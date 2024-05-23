@@ -25,9 +25,11 @@ public class LoginActivity extends AppCompatActivity {
 
     // handles process when log in button is clicked
     public void loggingIn(View view) {
+
     }
 
     // handles process when sign up button is clicked
     public void signingUp(View view) {
+
     }
 }
