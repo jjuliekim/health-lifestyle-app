@@ -55,7 +55,9 @@ public class LoginActivity extends AppCompatActivity {
             } else {  // incorrect pw
                 Toast.makeText(this, "Incorrect Password", Toast.LENGTH_SHORT).show();
                 usernameText.setText("");
+                usernameText.setHint("Username");
                 passwordText.setText("");
+                passwordText.setHint("Password");
             }
         } else {
             Toast.makeText(this, "User Does Not Exist", Toast.LENGTH_SHORT).show();

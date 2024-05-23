@@ -69,7 +69,7 @@
         android:layout_height="0dp"
         android:layout_marginBottom="36dp"
         android:ems="10"
-        android:hint="@string/weight_kg"
+        android:hint="@string/weight_lbs"
         android:inputType="text"
         app:layout_constraintBottom_toTopOf="@+id/ageText"
         app:layout_constraintEnd_toEndOf="parent"
@@ -103,4 +103,5 @@
         app:layout_constraintHorizontal_bias="0.5"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/ageText" />
+
 </androidx.constraintlayout.widget.ConstraintLayout>
