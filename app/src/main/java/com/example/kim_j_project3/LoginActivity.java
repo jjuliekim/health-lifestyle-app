@@ -1,6 +1,7 @@
 package com.example.kim_j_project3;
 
 import android.os.Bundle;
+import android.view.View;
 
 import androidx.activity.EdgeToEdge;
 import androidx.appcompat.app.AppCompatActivity;
@@ -20,5 +21,13 @@ public class LoginActivity extends AppCompatActivity {
             v.setPadding(systemBars.left, systemBars.top, systemBars.right, systemBars.bottom);
             return insets;
         });
+    }
+
+    // handles process when log in button is clicked
+    public void loggingIn(View view) {
+    }
+
+    // handles process when sign up button is clicked
+    public void signingUp(View view) {
     }
 }
