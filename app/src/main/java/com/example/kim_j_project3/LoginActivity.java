@@ -44,7 +44,7 @@ public class LoginActivity extends AppCompatActivity {
 
         // check if username already exists
         SharedPreferences sharedPreferences = getSharedPreferences("UserData", MODE_PRIVATE);
-        Intent myIntent = new Intent(LoginActivity.this, DashboardActivity.class);
+        Intent myIntent = new Intent(LoginActivity.this, MainPageActivity.class);
         if (sharedPreferences.contains(username)) {
             // validate password
             String storedPw = sharedPreferences.getString(username + "_password", null);

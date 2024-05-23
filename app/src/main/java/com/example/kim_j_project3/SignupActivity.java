@@ -49,7 +49,7 @@ public class SignupActivity extends AppCompatActivity {
         String age = ageText.getText().toString();
 
         SharedPreferences sharedPreferences = getSharedPreferences("UserData", MODE_PRIVATE);
-        Intent nextIntent = new Intent(SignupActivity.this, DashboardActivity.class);
+        Intent nextIntent = new Intent(SignupActivity.this, MainPageActivity.class);
 
         // check if username already exists
         if (sharedPreferences.contains(username)) {
