@@ -2,13 +2,18 @@ package com.example.kim_j_project3;
 
 import android.content.res.Configuration;
 import android.os.Bundle;
+import android.view.View;
 
 import androidx.activity.EdgeToEdge;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.graphics.Insets;
 import androidx.core.view.ViewCompat;
 import androidx.core.view.WindowInsetsCompat;
+import androidx.fragment.app.Fragment;
+import androidx.fragment.app.FragmentContainer;
 import androidx.fragment.app.FragmentTransaction;
+
+import com.google.android.material.tabs.TabLayout;
 
 public class MainPageActivity extends AppCompatActivity {
 
@@ -23,11 +28,51 @@ public class MainPageActivity extends AppCompatActivity {
             return insets;
         });
 
-        /*FragmentTransaction fragmentTransaction = getSupportFragmentManager().beginTransaction();
-        MealFragment mealFragment = new MealFragment();
-        fragmentTransaction.replace(R.id.fragmentContainerView, mealFragment);
-        fragmentTransaction.replace(R.id.fragmentContainerView, waterFragment);
-        fragmentTransaction.commit();*/
+        TabLayout tabLayout = findViewById(R.id.tab_layout);
+        View fragmentContainer = findViewById(R.id.fragmentContainerView);
+        replaceFragment(new MealFragment()); // default fragment on creation
 
+        // action on selected tab
+        tabLayout.addOnTabSelectedListener(new TabLayout.OnTabSelectedListener() {
+            @Override
+            public void onTabSelected(TabLayout.Tab tab) {
+                Fragment selectedFragment = null;
+                switch(tab.getPosition()) {
+                    case 0:
+                        selectedFragment = new MealFragment();
+                        break;
+                    case 1:
+                        selectedFragment = new HydrationFragment();
+                        break;
+                    case 2:
+                        selectedFragment = new SummaryFragment();
+                        break;
+                    case 3:
+                        selectedFragment = new SensorFragment();
+                        break;
+                }
+                if (selectedFragment != null) {
+                    replaceFragment(selectedFragment);
+                }
+            }
+
+            @Override
+            public void onTabUnselected(TabLayout.Tab tab) {
+
+            }
+
+            @Override
+            public void onTabReselected(TabLayout.Tab tab) {
+
+            }
+        });
+
+    }
+
+    // change fragments
+    private void replaceFragment(Fragment fragment) {
+        FragmentTransaction fragmentTransaction = getSupportFragmentManager().beginTransaction();
+        fragmentTransaction.replace(R.id.fragmentContainerView, fragment);
+        fragmentTransaction.commit();
     }
 }

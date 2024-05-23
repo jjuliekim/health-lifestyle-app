@@ -10,10 +10,10 @@ import android.view.ViewGroup;
 
 /**
  * A simple {@link Fragment} subclass.
- * Use the {@link StepsFragment#newInstance} factory method to
+ * Use the {@link SensorFragment#newInstance} factory method to
  * create an instance of this fragment.
  */
-public class StepsFragment extends Fragment {
+public class SensorFragment extends Fragment {
 
     // TODO: Rename parameter arguments, choose names that match
     // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
@@ -24,7 +24,7 @@ public class StepsFragment extends Fragment {
     private String mParam1;
     private String mParam2;
 
-    public StepsFragment() {
+    public SensorFragment() {
         // Required empty public constructor
     }
 
@@ -37,8 +37,8 @@ public class StepsFragment extends Fragment {
      * @return A new instance of fragment StepsFragment.
      */
     // TODO: Rename and change types and number of parameters
-    public static StepsFragment newInstance(String param1, String param2) {
-        StepsFragment fragment = new StepsFragment();
+    public static SensorFragment newInstance(String param1, String param2) {
+        SensorFragment fragment = new SensorFragment();
         Bundle args = new Bundle();
         args.putString(ARG_PARAM1, param1);
         args.putString(ARG_PARAM2, param2);
@@ -59,6 +59,6 @@ public class StepsFragment extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.fragment_steps, container, false);
+        return inflater.inflate(R.layout.fragment_sensor, container, false);
     }
 }
