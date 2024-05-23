@@ -28,9 +28,8 @@ public class MainPageActivity extends AppCompatActivity {
             return insets;
         });
 
-        TabLayout tabLayout = findViewById(R.id.tab_layout);
-        View fragmentContainer = findViewById(R.id.fragmentContainerView);
         replaceFragment(new MealFragment()); // default fragment on creation
+        TabLayout tabLayout = findViewById(R.id.tab_layout);
 
         // action on selected tab
         tabLayout.addOnTabSelectedListener(new TabLayout.OnTabSelectedListener() {
