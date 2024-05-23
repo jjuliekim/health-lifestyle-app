@@ -7,4 +7,11 @@
     android:layout_height="match_parent"
     tools:context=".MainPageActivity">
 
+    <androidx.fragment.app.FragmentContainerView
+        android:id="@+id/fragmentContainerView"
+        android:name="com.example.kim_j_project3.MealFragment"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        tools:layout_editor_absoluteX="154dp"
+        tools:layout_editor_absoluteY="164dp" />
 </androidx.constraintlayout.widget.ConstraintLayout>
