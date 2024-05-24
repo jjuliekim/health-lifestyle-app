@@ -1,5 +1,7 @@
 package com.example.kim_j_project3;
 
+import static com.example.kim_j_project3.JsonManager.saveMeals;
+
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
@@ -12,6 +14,8 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.graphics.Insets;
 import androidx.core.view.ViewCompat;
 import androidx.core.view.WindowInsetsCompat;
+
+import java.util.ArrayList;
 
 public class SignupActivity extends AppCompatActivity {
 
@@ -80,6 +84,8 @@ public class SignupActivity extends AppCompatActivity {
         editor.putString(username + "_weight", weight);
         editor.putString(username + "_age", age);
         editor.apply();
+        ArrayList<Meal> mealList = new ArrayList<>();
+        saveMeals(this, mealList, username);
         // pass data to next intent/activity
         nextIntent.putExtra("username", username);
         startActivity(nextIntent);
