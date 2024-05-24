@@ -26,7 +26,9 @@ import java.util.List;
 public class MealFragment extends Fragment {
     private String username;
     private ArrayList<Meal> mealList;
-    public MealFragment() {}
+
+    public MealFragment() {
+    }
 
     public static MealFragment newInstance(String username) {
         MealFragment fragment = new MealFragment();
@@ -46,63 +48,54 @@ public class MealFragment extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.fragment_meal, container, false);
         mealList = loadMeals(getContext(), username);
+        // set recycler view
         RecyclerView recyclerView = view.findViewById(R.id.meal_recycler_view);
         recyclerView.setLayoutManager(new LinearLayoutManager(getContext()));
         recyclerView.setAdapter(new MealAdapter(mealList));
+        // set button on click listener
         FloatingActionButton button = view.findViewById(R.id.add_meal_button);
         button.setOnClickListener(v -> addMealDialog());
+
         return view;
     }
 
     public void addMealDialog() {
-        AlertDialog.Builder builder = new AlertDialog.Builder(getContext());
-        LayoutInflater inflater = requireActivity().getLayoutInflater();
-        View dialogView = inflater.inflate(R.layout.dialog_add_meal, null);
-        builder.setView(dialogView);
-
+        // inflate dialog
+        View dialogView = LayoutInflater.from(getContext()).inflate(R.layout.dialog_add_meal, null);
         EditText mealNameText = dialogView.findViewById(R.id.add_meal_name);
         EditText mealCalText = dialogView.findViewById(R.id.add_meal_calories);
+        Button buttonAdd = dialogView.findViewById(R.id.button_add);
+        Button buttonCancel = dialogView.findViewById(R.id.button_cancel);
 
-        builder.setTitle("Add Meal")
-                .setPositiveButton("Add", null)
-                .setNegativeButton("Cancel", new DialogInterface.OnClickListener() {
-                    public void onClick(DialogInterface dialog, int id) {
-                        dialog.cancel();
-                    }
-                });
+        // make dialog
+        AlertDialog dialog = new AlertDialog.Builder(getContext()).setView(dialogView).create();
 
-        AlertDialog dialog = builder.create();
-        dialog.setOnShowListener(new DialogInterface.OnShowListener() {
-            @Override
-            public void onShow(DialogInterface dialogInterface) {
-                Button buttonAdd = dialog.getButton(AlertDialog.BUTTON_POSITIVE);
-                buttonAdd.setOnClickListener(new View.OnClickListener() {
-                    @Override
-                    public void onClick(View view) {
-                        String mealName = mealNameText.getText().toString();
-                        String mealCaloriesStr = mealCalText.getText().toString();
-
-                        if (mealName.isEmpty() || mealCaloriesStr.isEmpty()) {
-                            Toast.makeText(getContext(), "Invalid Input", Toast.LENGTH_SHORT).show();
-                            return;
-                        }
-
-                        int mealCalories;
-                        try {
-                            mealCalories = Integer.parseInt(mealCaloriesStr);
-                        } catch (NumberFormatException e) {
-                            Toast.makeText(getContext(), "Invalid Numerical Input", Toast.LENGTH_SHORT).show();
-                            return;
-                        }
-                        Meal newMeal = new Meal(mealName, mealCalories);
-                        mealList.add(newMeal);
-
-                        saveMeals(getContext(), mealList, username);
-                        dialog.dismiss();
-                    }
-                });
+        // add button action
+        buttonAdd.setOnClickListener(view -> {
+            String mealName = mealNameText.getText().toString();
+            String mealCaloriesStr = mealCalText.getText().toString();
+            if (mealName.isEmpty() || mealCaloriesStr.isEmpty()) {
+                Toast.makeText(getContext(), "Invalid Input", Toast.LENGTH_SHORT).show();
+                return;
             }
+
+            int mealCalories;
+            try {
+                mealCalories = Integer.parseInt(mealCaloriesStr);
+            } catch (NumberFormatException e) {
+                Toast.makeText(getContext(), "Invalid Numerical Input", Toast.LENGTH_SHORT).show();
+                return;
+            }
+
+            Meal newMeal = new Meal(mealName, mealCalories);
+            mealList.add(newMeal);
+            saveMeals(getContext(), mealList, username);
+            dialog.dismiss();
         });
+
+        // cancel button action
+        buttonCancel.setOnClickListener(view -> dialog.cancel());
+
         dialog.show();
     }
 }
