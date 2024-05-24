@@ -1,8 +1,11 @@
 package com.example.kim_j_project3;
 
+import static com.example.kim_j_project3.JsonManager.loadMeals;
+
 import android.content.Intent;
 import android.content.res.Configuration;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 
 import androidx.activity.EdgeToEdge;
@@ -28,11 +31,14 @@ public class MainPageActivity extends AppCompatActivity {
             v.setPadding(systemBars.left, systemBars.top, systemBars.right, systemBars.bottom);
             return insets;
         });
+        Log.i("HERE", "Created main page");
 
         Intent myIntent = getIntent();
         String username = myIntent.getStringExtra("username");
+        Log.i("HERE", "meal list size: " + loadMeals(this, username).size());
 
         replaceFragment(MealFragment.newInstance(username)); // default fragment on creation
+        Log.i("HERE", "replaced fragment");
         TabLayout tabLayout = findViewById(R.id.tab_layout);
 
         // action on selected tab

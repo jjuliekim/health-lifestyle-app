@@ -2,6 +2,7 @@ package com.example.kim_j_project3;
 
 import android.content.Context;
 import android.content.SharedPreferences;
+import android.util.Log;
 
 import com.google.gson.Gson;
 import com.google.gson.reflect.TypeToken;
@@ -19,6 +20,7 @@ public class JsonManager {
         String jsonList = gson.toJson(mealList);
         editor.putString(username + "_mealList", jsonList);
         editor.apply();
+        Log.d("JSON", "saved");
     }
 
     // save list of hydration
@@ -37,6 +39,7 @@ public class JsonManager {
         String json = sharedPreferences.getString(username + "_mealList", null);
         Gson gson = new Gson();
         Type type = new TypeToken<ArrayList<Meal>>() {}.getType();
+        Log.d("JSON", "loaded");
         return gson.fromJson(json, type);
     }
 
