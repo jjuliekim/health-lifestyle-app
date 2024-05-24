@@ -89,7 +89,7 @@ public class SignupActivity extends AppCompatActivity {
         saveMeals(this, mealList, username);
         // pass data to next intent/activity
         nextIntent.putExtra("username", username);
-        Log.i("HERE", "starting next activity");
+        Log.i("HERE", "registered");
         startActivity(nextIntent);
     }
 }

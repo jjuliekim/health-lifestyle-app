@@ -3,6 +3,7 @@ package com.example.kim_j_project3;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.widget.EditText;
 import android.widget.Toast;
@@ -25,6 +26,7 @@ public class LoginActivity extends AppCompatActivity {
             v.setPadding(systemBars.left, systemBars.top, systemBars.right, systemBars.bottom);
             return insets;
         });
+        Log.i("HERE", "log in screen");
     }
 
     // handles process when log in button is clicked
@@ -68,9 +70,6 @@ public class LoginActivity extends AppCompatActivity {
     public void signingUp(View view) {
         EditText usernameText = findViewById(R.id.userText);
         String username = usernameText.getText().toString();
-        if (username.isEmpty()) {
-            return;
-        }
         Intent myIntent = new Intent(LoginActivity.this, SignupActivity.class);
         myIntent.putExtra("username", username);
         startActivity(myIntent);
