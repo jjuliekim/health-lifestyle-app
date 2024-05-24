@@ -69,7 +69,7 @@ public class LoginActivity extends AppCompatActivity {
         EditText usernameText = findViewById(R.id.userText);
         String username = usernameText.getText().toString();
         if (username.isEmpty()) {
-            username = "";
+            return;
         }
         Intent myIntent = new Intent(LoginActivity.this, SignupActivity.class);
         myIntent.putExtra("username", username);

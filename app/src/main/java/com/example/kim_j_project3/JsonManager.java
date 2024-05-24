@@ -20,7 +20,7 @@ public class JsonManager {
         String jsonList = gson.toJson(mealList);
         editor.putString(username + "_mealList", jsonList);
         editor.apply();
-        Log.d("JSON", "saved");
+        Log.d("HERE", "saved");
     }
 
     // save list of hydration
@@ -39,7 +39,7 @@ public class JsonManager {
         String json = sharedPreferences.getString(username + "_mealList", null);
         Gson gson = new Gson();
         Type type = new TypeToken<ArrayList<Meal>>() {}.getType();
-        Log.d("JSON", "loaded");
+        Log.d("HERE", "loaded");
         return gson.fromJson(json, type);
     }
 
