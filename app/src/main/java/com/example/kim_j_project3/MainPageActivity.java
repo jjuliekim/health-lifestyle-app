@@ -23,13 +23,19 @@ public class MainPageActivity extends AppCompatActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
-        Log.i("HERE", "creating main page");
+        Log.d("HERE", "creating main page 1");
         super.onCreate(savedInstanceState);
+        Log.d("HERE", "creating main page 2");
         EdgeToEdge.enable(this);
+        Log.d("HERE", "creating main page 3");
         setContentView(R.layout.activity_mainpage);
+        Log.d("HERE", "creating main page 4");
         ViewCompat.setOnApplyWindowInsetsListener(findViewById(R.id.main), (v, insets) -> {
+            Log.d("HERE", "creating main page 5");
             Insets systemBars = insets.getInsets(WindowInsetsCompat.Type.systemBars());
+            Log.d("HERE", "creating main page 6");
             v.setPadding(systemBars.left, systemBars.top, systemBars.right, systemBars.bottom);
+            Log.d("HERE", "creating main page 7");
             return insets;
         });
         Log.i("HERE", "Created main page");
