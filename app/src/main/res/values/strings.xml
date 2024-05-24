@@ -19,4 +19,6 @@
     <string name="hydration">Hydration</string>
     <string name="summary">Summary</string>
     <string name="steps">Steps</string>
+    <string name="name">Name</string>
+    <string name="calories">Calories</string>
 </resources>
