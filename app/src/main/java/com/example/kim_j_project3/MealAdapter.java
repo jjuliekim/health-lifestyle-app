@@ -7,23 +7,45 @@ import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
 import android.widget.TextView;
 
+import androidx.annotation.NonNull;
+import androidx.recyclerview.widget.RecyclerView;
+
 import java.util.List;
 
-public class MealAdapter extends ArrayAdapter<Meal> {
-    public MealAdapter(Context context, List<Meal> mealList) {
-        super(context, 0, mealList);
+public class MealAdapter extends RecyclerView.Adapter<MealAdapter.MealViewHolder> {
+    private List<Meal> mealList;
+
+    public MealAdapter(List<Meal> mealList) {
+        this.mealList = mealList;
+    }
+
+    @NonNull
+    @Override
+    public MealViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
+        View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.meal_item, parent, false);
+        return new MealViewHolder(view);
     }
 
     @Override
-    public View getView(int position, View convertView, ViewGroup parent) {
-        Meal meal = getItem(position);
-        convertView = LayoutInflater.from(getContext()).inflate(R.layout.meal_item, parent, false);
+    public void onBindViewHolder(@NonNull MealViewHolder holder, int position) {
+        Meal meal = mealList.get(position);
+        holder.nameTextView.setText(meal.getName());
+        holder.caloriesTextView.setText(String.valueOf(meal.getCalories()));
+    }
 
-        TextView nameText = convertView.findViewById(R.id.meal_name);
-        TextView amtText = convertView.findViewById(R.id.meal_cal);
-        nameText.setText(meal.getName());
-        amtText.setText(meal.getCalories());
+    @Override
+    public int getItemCount() {
+        return mealList.size();
+    }
 
-        return convertView;
+    public static class MealViewHolder extends RecyclerView.ViewHolder {
+        TextView nameTextView;
+        TextView caloriesTextView;
+
+        public MealViewHolder(@NonNull View itemView) {
+            super(itemView);
+            nameTextView = itemView.findViewById(R.id.meal_name);
+            caloriesTextView = itemView.findViewById(R.id.meal_cal);
+        }
     }
 }

@@ -1,5 +1,6 @@
 package com.example.kim_j_project3;
 
+import android.content.Intent;
 import android.content.res.Configuration;
 import android.os.Bundle;
 import android.view.View;
@@ -28,7 +29,10 @@ public class MainPageActivity extends AppCompatActivity {
             return insets;
         });
 
-        replaceFragment(new MealFragment()); // default fragment on creation
+        Intent myIntent = getIntent();
+        String username = myIntent.getStringExtra("username");
+
+        replaceFragment(MealFragment.newInstance(username)); // default fragment on creation
         TabLayout tabLayout = findViewById(R.id.tab_layout);
 
         // action on selected tab
@@ -38,7 +42,7 @@ public class MainPageActivity extends AppCompatActivity {
                 Fragment selectedFragment = null;
                 switch(tab.getPosition()) {
                     case 0:
-                        selectedFragment = new MealFragment();
+                        selectedFragment = MealFragment.newInstance(username);
                         break;
                     case 1:
                         selectedFragment = new HydrationFragment();
