@@ -1,7 +1,5 @@
 package com.example.kim_j_project3;
 
-import static com.example.kim_j_project3.JsonManager.loadMeals;
-
 import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
@@ -34,7 +32,7 @@ public class MainPageActivity extends AppCompatActivity {
 
         Intent myIntent = getIntent();
         String username = myIntent.getStringExtra("username");
-        Log.i("HERE", "meal list size: " + loadMeals(this, username).size());
+        Log.i("HERE", "meal list size: " + JsonManager.loadMeals(this, username).size());
 
         replaceFragment(MealFragment.newInstance(username)); // default fragment on creation
         Log.i("HERE", "replaced fragment");

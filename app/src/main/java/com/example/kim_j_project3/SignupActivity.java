@@ -1,7 +1,5 @@
 package com.example.kim_j_project3;
 
-import static com.example.kim_j_project3.JsonManager.saveMeals;
-
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
@@ -86,7 +84,7 @@ public class SignupActivity extends AppCompatActivity {
         editor.putString(username + "_age", age);
         editor.apply();
         ArrayList<Meal> mealList = new ArrayList<>();
-        saveMeals(this, mealList, username);
+        JsonManager.saveMeals(this, mealList, username);
         // pass data to next intent/activity
         nextIntent.putExtra("username", username);
         Log.i("HERE", "registered");

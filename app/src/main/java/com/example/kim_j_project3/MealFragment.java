@@ -1,17 +1,12 @@
 package com.example.kim_j_project3;
 
-import static com.example.kim_j_project3.JsonManager.loadMeals;
-import static com.example.kim_j_project3.JsonManager.saveMeals;
-
 import android.app.AlertDialog;
-import android.content.DialogInterface;
 import android.os.Bundle;
 
 import androidx.fragment.app.Fragment;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -22,7 +17,6 @@ import android.widget.Toast;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 
 import java.util.ArrayList;
-import java.util.List;
 
 public class MealFragment extends Fragment {
     private String username;
@@ -48,7 +42,7 @@ public class MealFragment extends Fragment {
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.fragment_meal, container, false);
-        mealList = loadMeals(getContext(), username);
+        mealList = JsonManager.loadMeals(getContext(), username);
         // set recycler view
         RecyclerView recyclerView = view.findViewById(R.id.meal_recycler_view);
         recyclerView.setLayoutManager(new LinearLayoutManager(getContext()));
@@ -90,7 +84,7 @@ public class MealFragment extends Fragment {
 
             Meal newMeal = new Meal(mealName, mealCalories);
             mealList.add(newMeal);
-            saveMeals(getContext(), mealList, username);
+            JsonManager.saveMeals(getContext(), mealList, username);
             dialog.dismiss();
         });
 
