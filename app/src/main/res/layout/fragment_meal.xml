@@ -19,7 +19,6 @@
         android:layout_alignParentEnd="true"
         android:layout_alignParentBottom="true"
         android:layout_margin="20dp"
-        android:src="@android:drawable/ic_input_add"
-        android:onClick="addMealDialog"/>
+        android:src="@android:drawable/ic_input_add"/>
 
 </RelativeLayout>

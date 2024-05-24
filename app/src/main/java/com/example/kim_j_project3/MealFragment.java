@@ -18,6 +18,8 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Toast;
 
+import com.google.android.material.floatingactionbutton.FloatingActionButton;
+
 import java.util.ArrayList;
 import java.util.List;
 
@@ -47,11 +49,12 @@ public class MealFragment extends Fragment {
         RecyclerView recyclerView = view.findViewById(R.id.meal_recycler_view);
         recyclerView.setLayoutManager(new LinearLayoutManager(getContext()));
         recyclerView.setAdapter(new MealAdapter(mealList));
+        FloatingActionButton button = view.findViewById(R.id.add_meal_button);
+        button.setOnClickListener(v -> addMealDialog());
         return view;
     }
 
-    // show dialog for adding meal
-    public void addMealDialog(View view) {
+    public void addMealDialog() {
         AlertDialog.Builder builder = new AlertDialog.Builder(getContext());
         LayoutInflater inflater = requireActivity().getLayoutInflater();
         View dialogView = inflater.inflate(R.layout.dialog_add_meal, null);
