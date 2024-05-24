@@ -23,6 +23,7 @@ public class MainPageActivity extends AppCompatActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
+        Log.i("HERE", "creating main page");
         super.onCreate(savedInstanceState);
         EdgeToEdge.enable(this);
         setContentView(R.layout.activity_mainpage);
@@ -37,7 +38,8 @@ public class MainPageActivity extends AppCompatActivity {
         String username = myIntent.getStringExtra("username");
         Log.i("HERE", "meal list size: " + loadMeals(this, username).size());
 
-        replaceFragment(MealFragment.newInstance(username)); // default fragment on creation
+        replaceFragment(new HydrationFragment());
+//        replaceFragment(MealFragment.newInstance(username)); // default fragment on creation
         Log.i("HERE", "replaced fragment");
         TabLayout tabLayout = findViewById(R.id.tab_layout);
 
