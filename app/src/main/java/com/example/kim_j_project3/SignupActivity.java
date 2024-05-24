@@ -35,7 +35,7 @@ public class SignupActivity extends AppCompatActivity {
         Intent myIntent = getIntent();
         String username = myIntent.getStringExtra("username");
         EditText userText = findViewById(R.id.usernameText);
-        if (!username.equals("")) {
+        if (!username.isEmpty()) {
             userText.setText(username);
         }
     }

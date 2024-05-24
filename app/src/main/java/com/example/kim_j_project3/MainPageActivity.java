@@ -3,10 +3,8 @@ package com.example.kim_j_project3;
 import static com.example.kim_j_project3.JsonManager.loadMeals;
 
 import android.content.Intent;
-import android.content.res.Configuration;
 import android.os.Bundle;
 import android.util.Log;
-import android.view.View;
 
 import androidx.activity.EdgeToEdge;
 import androidx.appcompat.app.AppCompatActivity;
@@ -14,7 +12,6 @@ import androidx.core.graphics.Insets;
 import androidx.core.view.ViewCompat;
 import androidx.core.view.WindowInsetsCompat;
 import androidx.fragment.app.Fragment;
-import androidx.fragment.app.FragmentContainer;
 import androidx.fragment.app.FragmentTransaction;
 
 import com.google.android.material.tabs.TabLayout;
@@ -25,15 +22,12 @@ public class MainPageActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         EdgeToEdge.enable(this);
-        Log.d("HERE", "creating main page 3");
+        Log.d("HERE", "creating main page 1");
         setContentView(R.layout.activity_mainpage); // breaks here
-        Log.d("HERE", "creating main page 4");
+        Log.d("HERE", "creating main page 2");
         ViewCompat.setOnApplyWindowInsetsListener(findViewById(R.id.main), (v, insets) -> {
-            Log.d("HERE", "creating main page 5");
             Insets systemBars = insets.getInsets(WindowInsetsCompat.Type.systemBars());
-            Log.d("HERE", "creating main page 6");
             v.setPadding(systemBars.left, systemBars.top, systemBars.right, systemBars.bottom);
-            Log.d("HERE", "creating main page 7");
             return insets;
         });
         Log.i("HERE", "Created main page");
@@ -42,8 +36,7 @@ public class MainPageActivity extends AppCompatActivity {
         String username = myIntent.getStringExtra("username");
         Log.i("HERE", "meal list size: " + loadMeals(this, username).size());
 
-        replaceFragment(new HydrationFragment());
-//        replaceFragment(MealFragment.newInstance(username)); // default fragment on creation
+        replaceFragment(MealFragment.newInstance(username)); // default fragment on creation
         Log.i("HERE", "replaced fragment");
         TabLayout tabLayout = findViewById(R.id.tab_layout);
 
