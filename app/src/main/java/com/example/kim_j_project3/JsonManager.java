@@ -44,7 +44,7 @@ public class JsonManager {
     }
 
     // load hydration list
-    public static ArrayList<Meal> loadHydration(Context context, String username) {
+    public static ArrayList<Hydration> loadHydration(Context context, String username) {
         SharedPreferences sharedPreferences = context.getSharedPreferences("UserData", Context.MODE_PRIVATE);
         String json = sharedPreferences.getString(username + "_hydrationList", null);
         Gson gson = new Gson();
