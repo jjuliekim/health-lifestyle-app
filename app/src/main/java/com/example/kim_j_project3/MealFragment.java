@@ -75,14 +75,7 @@ public class MealFragment extends Fragment {
                 Toast.makeText(getContext(), "Invalid Input", Toast.LENGTH_SHORT).show();
                 return;
             }
-
-            int mealCalories;
-            try {
-                mealCalories = Integer.parseInt(mealCaloriesStr);
-            } catch (NumberFormatException e) {
-                Toast.makeText(getContext(), "Invalid Numerical Input", Toast.LENGTH_SHORT).show();
-                return;
-            }
+            int mealCalories = Integer.parseInt(mealCaloriesStr);
 
             Meal newMeal = new Meal(mealName, mealCalories);
             String username = "";
