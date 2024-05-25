@@ -7,11 +7,13 @@ import androidx.fragment.app.Fragment;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
@@ -19,30 +21,30 @@ import com.google.android.material.floatingactionbutton.FloatingActionButton;
 import java.util.ArrayList;
 
 public class MealFragment extends Fragment {
-    private String username;
-    private ArrayList<Meal> mealList;
 
     public MealFragment() {
     }
 
-    public static MealFragment newInstance(String username) {
-        MealFragment fragment = new MealFragment();
-        Bundle args = new Bundle();
-        args.putString("username", username);
-        fragment.setArguments(args);
-        return fragment;
+    public static MealFragment newInstance() {
+        return new MealFragment();
     }
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        username = getArguments().getString("username");
     }
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.fragment_meal, container, false);
-        mealList = JsonManager.loadMeals(getContext(), username);
+        String username = "";
+        if (getArguments() != null) {
+            username = getArguments().getString("username");
+            Log.i("HERE", "username: " + username);
+        } else {
+            Log.i("HERE", "was null");
+        }
+        ArrayList<Meal> mealList = JsonManager.loadMeals(getContext(), username);
         // set recycler view
         RecyclerView recyclerView = view.findViewById(R.id.meal_recycler_view);
         recyclerView.setLayoutManager(new LinearLayoutManager(getContext()));
@@ -83,6 +85,11 @@ public class MealFragment extends Fragment {
             }
 
             Meal newMeal = new Meal(mealName, mealCalories);
+            String username = "";
+            if (getArguments() != null) {
+                username = getArguments().getString("username");
+            }
+            ArrayList<Meal> mealList = JsonManager.loadMeals(getContext(), username);
             mealList.add(newMeal);
             JsonManager.saveMeals(getContext(), mealList, username);
             dialog.dismiss();

@@ -34,8 +34,13 @@ public class MainPageActivity extends AppCompatActivity {
         String username = myIntent.getStringExtra("username");
         Log.i("HERE", "meal list size: " + JsonManager.loadMeals(this, username).size());
 
-        replaceFragment(MealFragment.newInstance(username)); // default fragment on creation
-        Log.i("HERE", "replaced fragment");
+        Bundle bundle = new Bundle();
+        bundle.putString("username", username);
+        Fragment frag = new MealFragment();
+        frag.setArguments(bundle);
+        replaceFragment(frag);
+
+
         TabLayout tabLayout = findViewById(R.id.tab_layout);
 
         // action on selected tab
@@ -45,7 +50,8 @@ public class MainPageActivity extends AppCompatActivity {
                 Fragment selectedFragment = null;
                 switch(tab.getPosition()) {
                     case 0:
-                        selectedFragment = MealFragment.newInstance(username);
+                        selectedFragment = new MealFragment();
+                        selectedFragment.setArguments(bundle);
                         break;
                     case 1:
                         selectedFragment = new HydrationFragment();
