@@ -23,7 +23,8 @@
                 android:layout_height="wrap_content"
                 android:background="#FFFFFF"
                 android:text="@string/height"
-                android:textSize="20sp" />
+                android:textSize="20sp"
+                android:gravity="center"/>
 
             <TextView
                 android:id="@+id/weightTextView"
@@ -31,7 +32,8 @@
                 android:layout_height="wrap_content"
                 android:background="#FFFFFF"
                 android:text="@string/weight"
-                android:textSize="20sp" />
+                android:textSize="20sp"
+                android:gravity="center" />
 
             <TextView
                 android:id="@+id/BmiTextView"
@@ -39,7 +41,8 @@
                 android:layout_height="wrap_content"
                 android:background="#FFFFFF"
                 android:text="@string/bmi"
-                android:textSize="20sp" />
+                android:textSize="20sp"
+                android:gravity="center" />
         </LinearLayout>
 
         <androidx.recyclerview.widget.RecyclerView
