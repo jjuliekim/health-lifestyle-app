@@ -85,6 +85,8 @@ public class SignupActivity extends AppCompatActivity {
         editor.apply();
         ArrayList<Meal> mealList = new ArrayList<>();
         JsonManager.saveMeals(this, mealList, username);
+        ArrayList<Hydration> hydrationList = new ArrayList<>();
+        JsonManager.saveHydration(this, hydrationList, username);
         // pass data to next intent/activity
         nextIntent.putExtra("username", username);
         Log.i("HERE", "registered");

@@ -30,7 +30,7 @@ public class MealAdapter extends RecyclerView.Adapter<MealAdapter.MealViewHolder
     public void onBindViewHolder(@NonNull MealViewHolder holder, int position) {
         Meal meal = mealList.get(position);
         holder.nameTextView.setText(meal.getName());
-        holder.caloriesTextView.setText(String.valueOf(meal.getCalories()));
+        holder.caloriesTextView.setText(meal.getCalories() + " cal");
     }
 
     @Override
