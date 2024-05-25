@@ -25,4 +25,6 @@
     <string name="add">Add</string>
     <string name="time">Time</string>
     <string name="ml">mL</string>
+    <string name="no_meals_entered">No Meals Entered</string>
+    <string name="no_drink_logs_entered">No Drink Logs Entered</string>
 </resources>
