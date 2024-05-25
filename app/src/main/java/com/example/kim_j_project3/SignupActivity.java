@@ -65,14 +65,6 @@ public class SignupActivity extends AppCompatActivity {
             Toast.makeText(this, "Invalid Inputs", Toast.LENGTH_SHORT).show();
             return;
         }
-        try {
-            Double.parseDouble(height);
-            Double.parseDouble(weight);
-            Double.parseDouble(age);
-        } catch (NumberFormatException e) {
-            Toast.makeText(this, "Invalid Numerical Input", Toast.LENGTH_SHORT).show();
-            return;
-        }
 
         // save user info
         Toast.makeText(this, "Registered", Toast.LENGTH_SHORT).show();
