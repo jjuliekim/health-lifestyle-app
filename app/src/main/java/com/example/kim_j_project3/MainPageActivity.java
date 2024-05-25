@@ -15,14 +15,13 @@ import androidx.fragment.app.FragmentTransaction;
 import com.google.android.material.tabs.TabLayout;
 
 public class MainPageActivity extends AppCompatActivity {
+    private Bundle bundle;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         EdgeToEdge.enable(this);
-        Log.d("HERE", "creating main page 1");
-        setContentView(R.layout.activity_mainpage); // breaks here
-        Log.d("HERE", "creating main page 2");
+        setContentView(R.layout.activity_mainpage);
         ViewCompat.setOnApplyWindowInsetsListener(findViewById(R.id.main), (v, insets) -> {
             Insets systemBars = insets.getInsets(WindowInsetsCompat.Type.systemBars());
             v.setPadding(systemBars.left, systemBars.top, systemBars.right, systemBars.bottom);
@@ -34,16 +33,13 @@ public class MainPageActivity extends AppCompatActivity {
         String username = myIntent.getStringExtra("username");
         Log.i("HERE", "meal list size: " + JsonManager.loadMeals(this, username).size());
 
-        Bundle bundle = new Bundle();
+        // initial fragment
+        bundle = new Bundle();
         bundle.putString("username", username);
-        Fragment frag = new MealFragment();
-        frag.setArguments(bundle);
-        replaceFragment(frag);
-
-
-        TabLayout tabLayout = findViewById(R.id.tab_layout);
+        replaceFragment(MealFragment.newInstance());
 
         // action on selected tab
+        TabLayout tabLayout = findViewById(R.id.tab_layout);
         tabLayout.addOnTabSelectedListener(new TabLayout.OnTabSelectedListener() {
             @Override
             public void onTabSelected(TabLayout.Tab tab) {
@@ -51,7 +47,6 @@ public class MainPageActivity extends AppCompatActivity {
                 switch(tab.getPosition()) {
                     case 0:
                         selectedFragment = new MealFragment();
-                        selectedFragment.setArguments(bundle);
                         break;
                     case 1:
                         selectedFragment = new HydrationFragment();
@@ -83,6 +78,7 @@ public class MainPageActivity extends AppCompatActivity {
 
     // change fragments
     private void replaceFragment(Fragment fragment) {
+        fragment.setArguments(bundle);
         FragmentTransaction fragmentTransaction = getSupportFragmentManager().beginTransaction();
         fragmentTransaction.replace(R.id.fragmentContainerView, fragment);
         fragmentTransaction.commit();

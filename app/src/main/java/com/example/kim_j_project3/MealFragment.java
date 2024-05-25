@@ -13,7 +13,6 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.EditText;
-import android.widget.TextView;
 import android.widget.Toast;
 
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
@@ -21,6 +20,9 @@ import com.google.android.material.floatingactionbutton.FloatingActionButton;
 import java.util.ArrayList;
 
 public class MealFragment extends Fragment {
+    private ArrayList<Meal> mealList;
+    private MealAdapter mealAdapter;
+    private String username;
 
     public MealFragment() {
     }
@@ -37,18 +39,18 @@ public class MealFragment extends Fragment {
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.fragment_meal, container, false);
-        String username = "";
         if (getArguments() != null) {
             username = getArguments().getString("username");
             Log.i("HERE", "username: " + username);
         } else {
             Log.i("HERE", "was null");
         }
-        ArrayList<Meal> mealList = JsonManager.loadMeals(getContext(), username);
+        mealList = JsonManager.loadMeals(getContext(), username);
+        mealAdapter = new MealAdapter(mealList);
         // set recycler view
         RecyclerView recyclerView = view.findViewById(R.id.meal_recycler_view);
         recyclerView.setLayoutManager(new LinearLayoutManager(getContext()));
-        recyclerView.setAdapter(new MealAdapter(mealList));
+        recyclerView.setAdapter(mealAdapter);
         // set button on click listener
         FloatingActionButton button = view.findViewById(R.id.add_meal_button);
         button.setOnClickListener(v -> addMealDialog());
@@ -56,6 +58,7 @@ public class MealFragment extends Fragment {
         return view;
     }
 
+    // set up and display dialog
     public void addMealDialog() {
         // inflate dialog
         View dialogView = LayoutInflater.from(getContext()).inflate(R.layout.dialog_add_meal, null);
@@ -78,11 +81,6 @@ public class MealFragment extends Fragment {
             int mealCalories = Integer.parseInt(mealCaloriesStr);
 
             Meal newMeal = new Meal(mealName, mealCalories);
-            String username = "";
-            if (getArguments() != null) {
-                username = getArguments().getString("username");
-            }
-            ArrayList<Meal> mealList = JsonManager.loadMeals(getContext(), username);
             mealList.add(newMeal);
             JsonManager.saveMeals(getContext(), mealList, username);
             dialog.dismiss();
