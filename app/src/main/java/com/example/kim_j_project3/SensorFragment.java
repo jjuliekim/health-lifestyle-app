@@ -2,6 +2,8 @@ package com.example.kim_j_project3;
 
 import android.content.Context;
 import android.hardware.Sensor;
+import android.hardware.SensorEvent;
+import android.hardware.SensorEventListener;
 import android.hardware.SensorManager;
 import android.os.Bundle;
 
@@ -12,10 +14,8 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
 
-public class SensorFragment extends Fragment {
+public class SensorFragment extends Fragment implements SensorEventListener {
     private TextView heartRateText;
-    private Sensor heartRateSensor;
-    private SensorManager sensorManager;
 
     public SensorFragment() {
     }
@@ -27,8 +27,8 @@ public class SensorFragment extends Fragment {
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        sensorManager = (SensorManager) getActivity().getSystemService(Context.SENSOR_SERVICE);
-        heartRateSensor = sensorManager.getDefaultSensor(Sensor.TYPE_HEART_RATE);
+        SensorManager sensorManager = (SensorManager) getActivity().getSystemService(Context.SENSOR_SERVICE);
+        Sensor heartRateSensor = sensorManager.getDefaultSensor(Sensor.TYPE_HEART_RATE);
     }
 
     @Override
@@ -36,5 +36,16 @@ public class SensorFragment extends Fragment {
         View view = inflater.inflate(R.layout.fragment_sensor, container, false);
         heartRateText = view.findViewById(R.id.heartRateTextView);
         return view;
+    }
+
+    @Override
+    public void onSensorChanged(SensorEvent event) {
+        float heartRate = event.values[0];
+        heartRateText.setText(String.format("%.1f bpm", heartRate));
+    }
+
+    @Override
+    public void onAccuracyChanged(Sensor sensor, int accuracy) {
+
     }
 }
