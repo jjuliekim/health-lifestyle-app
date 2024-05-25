@@ -21,25 +21,36 @@
         app:layout_constraintBottom_toBottomOf="parent">
 
         <TextView
-            android:id="@+id/meal_name"
+            android:id="@+id/summary_date"
             android:layout_width="0dp"
             android:layout_height="match_parent"
             android:layout_weight="1"
-            android:gravity="center_vertical|start"
+            android:gravity="center_vertical"
             android:paddingStart="8dp"
             android:paddingEnd="8dp"
-            android:text="@string/name"
+            android:text="@string/date"
             android:textSize="20sp" />
 
         <TextView
-            android:id="@+id/meal_cal"
+            android:id="@+id/summary_cal"
             android:layout_width="0dp"
             android:layout_height="match_parent"
             android:layout_weight="1"
-            android:gravity="center_vertical|end"
+            android:gravity="center_vertical"
             android:paddingStart="8dp"
             android:paddingEnd="8dp"
             android:text="@string/calories"
+            android:textSize="20sp" />
+
+        <TextView
+            android:id="@+id/summary_ml"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:gravity="center_vertical"
+            android:paddingStart="8dp"
+            android:paddingEnd="8dp"
+            android:text="@string/ml"
             android:textSize="20sp" />
 
     </LinearLayout>
