@@ -3,11 +3,13 @@ package com.example.kim_j_project3;
 public class Meal {
     private String name;
     private int calories;
+    private String date;
 
     // constructor
-    public Meal(String name, int calories) {
+    public Meal(String name, int calories, String date) {
         this.name = name;
         this.calories = calories;
+        this.date = date;
     }
 
     // getters and setters
@@ -19,6 +21,8 @@ public class Meal {
         return calories;
     }
 
+    public String getDate() { return date; }
+
     public void setName(String newName) {
         name = newName;
     }
@@ -26,4 +30,6 @@ public class Meal {
     public void setCalories(int newCalories) {
         calories = newCalories;
     }
+
+    public void setDate(String newDate) { date = newDate; }
 }

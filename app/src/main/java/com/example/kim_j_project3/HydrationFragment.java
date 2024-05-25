@@ -18,6 +18,7 @@ import android.widget.Toast;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 
 import java.util.ArrayList;
+import java.util.Calendar;
 
 public class HydrationFragment extends Fragment {
     private ArrayList<Hydration> hydrationList;
@@ -25,10 +26,6 @@ public class HydrationFragment extends Fragment {
     private String username;
 
     public HydrationFragment() {
-    }
-
-    public static HydrationFragment newInstance() {
-        return new HydrationFragment();
     }
 
     @Override
@@ -77,8 +74,11 @@ public class HydrationFragment extends Fragment {
                 return;
             }
             int drinkML = Integer.parseInt(liquidML);
-
-            Hydration newHydration = new Hydration(liquidTime, drinkML);
+            Calendar calendar = Calendar.getInstance();
+            int month = calendar.get(Calendar.MONTH) + 1;
+            int day = calendar.get(Calendar.DAY_OF_MONTH);
+            String date = month + "/" + day;
+            Hydration newHydration = new Hydration(liquidTime, drinkML, date);
             hydrationAdapter.addLiquid(newHydration);
             JsonManager.saveHydration(getContext(), hydrationList, username);
             dialog.dismiss();

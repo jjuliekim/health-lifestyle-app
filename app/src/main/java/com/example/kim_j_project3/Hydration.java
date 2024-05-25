@@ -3,11 +3,13 @@ package com.example.kim_j_project3;
 public class Hydration {
     private String time;
     private int ml;
+    private String date;
 
     // constructor
-    public Hydration(String time, int ml) {
+    public Hydration(String time, int ml, String date) {
         this.time = time;
         this.ml = ml;
+        this.date = date;
     }
 
     // getters and setters
@@ -19,6 +21,8 @@ public class Hydration {
         return ml;
     }
 
+    public String getDate() { return date; }
+
     public void setTime(String newTime) {
         time = newTime;
     }
@@ -26,4 +30,6 @@ public class Hydration {
     public void setMl(int newMl) {
         ml = newMl;
     }
+
+    public void setDate(String newDate) { date = newDate; }
 }

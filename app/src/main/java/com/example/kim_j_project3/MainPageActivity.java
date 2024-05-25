@@ -2,7 +2,6 @@ package com.example.kim_j_project3;
 
 import android.content.Intent;
 import android.os.Bundle;
-import android.util.Log;
 
 import androidx.activity.EdgeToEdge;
 import androidx.appcompat.app.AppCompatActivity;
@@ -27,11 +26,9 @@ public class MainPageActivity extends AppCompatActivity {
             v.setPadding(systemBars.left, systemBars.top, systemBars.right, systemBars.bottom);
             return insets;
         });
-        Log.i("HERE", "Created main page");
 
         Intent myIntent = getIntent();
         String username = myIntent.getStringExtra("username");
-        Log.i("HERE", "meal list size: " + JsonManager.loadMeals(this, username).size());
 
         // initial fragment
         bundle = new Bundle();

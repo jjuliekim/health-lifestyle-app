@@ -6,7 +6,6 @@ import android.os.Bundle;
 
 import androidx.fragment.app.Fragment;
 
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -16,10 +15,6 @@ public class SummaryFragment extends Fragment {
     private String username;
 
     public SummaryFragment() {
-    }
-
-    public static SummaryFragment newInstance() {
-        return new SummaryFragment();
     }
 
     @Override
@@ -35,10 +30,12 @@ public class SummaryFragment extends Fragment {
         }
 
         setUserInfo(view);
+        setSummaryList(view);
 
         return view;
     }
 
+    // 1st part: user register stats
     private void setUserInfo(View view) {
         // set user info texts
         TextView heightText = view.findViewById(R.id.heightTextView);
@@ -53,6 +50,11 @@ public class SummaryFragment extends Fragment {
         heightText.setText(String.format("Height: %s", height));
         weightText.setText(String.format("Weight: %s", weight));
         bmiText.setText(String.format("BMI: %.2f", bmi));
+    }
+
+    // 2nd part: summary stats sorted by date
+    private void setSummaryList(View view) {
+
     }
 
 }

@@ -18,6 +18,7 @@ import android.widget.Toast;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 
 import java.util.ArrayList;
+import java.util.Calendar;
 
 public class MealFragment extends Fragment {
     private ArrayList<Meal> mealList;
@@ -77,8 +78,11 @@ public class MealFragment extends Fragment {
                 return;
             }
             int mealCalories = Integer.parseInt(mealCaloriesStr);
-
-            Meal newMeal = new Meal(mealName, mealCalories);
+            Calendar calendar = Calendar.getInstance();
+            int month = calendar.get(Calendar.MONTH) + 1;
+            int day = calendar.get(Calendar.DAY_OF_MONTH);
+            String date = month + "/" + day;
+            Meal newMeal = new Meal(mealName, mealCalories, date);
             mealAdapter.addMeal(newMeal);
             JsonManager.saveMeals(getContext(), mealList, username);
             dialog.dismiss();
