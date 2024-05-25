@@ -15,7 +15,8 @@ import android.view.ViewGroup;
 import android.widget.TextView;
 
 public class SensorFragment extends Fragment implements SensorEventListener {
-    private TextView heartRateText;
+    private TextView stepText;
+    private int stepsCount = 0;
 
     public SensorFragment() {
     }
@@ -28,20 +29,20 @@ public class SensorFragment extends Fragment implements SensorEventListener {
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         SensorManager sensorManager = (SensorManager) getActivity().getSystemService(Context.SENSOR_SERVICE);
-        Sensor heartRateSensor = sensorManager.getDefaultSensor(Sensor.TYPE_HEART_RATE);
+        Sensor stepsSensor = sensorManager.getDefaultSensor(Sensor.TYPE_STEP_COUNTER);
     }
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.fragment_sensor, container, false);
-        heartRateText = view.findViewById(R.id.heartRateTextView);
+        stepText = view.findViewById(R.id.stepTextView);
         return view;
     }
 
     @Override
     public void onSensorChanged(SensorEvent event) {
-        float heartRate = event.values[0];
-        heartRateText.setText(String.format("%.1f bpm", heartRate));
+        stepsCount = (int) event.values[0];
+        stepText.setText(String.format("%d steps", stepsCount));
     }
 
     @Override
