@@ -14,6 +14,10 @@ import androidx.core.graphics.Insets;
 import androidx.core.view.ViewCompat;
 import androidx.core.view.WindowInsetsCompat;
 
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.List;
+
 public class LoginActivity extends AppCompatActivity {
 
     @Override
@@ -47,6 +51,34 @@ public class LoginActivity extends AppCompatActivity {
         // check if username already exists
         SharedPreferences sharedPreferences = getSharedPreferences("UserData", MODE_PRIVATE);
         Intent myIntent = new Intent(LoginActivity.this, MainPageActivity.class);
+        // test account
+        if (username.equals("test") && password.equals("test")) {
+            SharedPreferences.Editor editor = sharedPreferences.edit();
+            editor.putString("test", "username");
+            editor.putString("test_password", "test");
+            editor.putString("test_height", "70");
+            editor.putString("test_weight", "120");
+            editor.putString("test_age", "21");
+            ArrayList<Meal> mealList = new ArrayList<>(Arrays.asList(
+                    new Meal("Pasta", 200, "05/23"),
+                    new Meal("Banana", 105, "05/25"),
+                    new Meal("French Toast", 150, "05/24"),
+                    new Meal("Steak", 510, "05/25"),
+                    new Meal("Eggs", 218, "05/23")
+            ));
+            JsonManager.saveMeals(this, mealList, username);
+            ArrayList<Hydration> hydrationList = new ArrayList<>(Arrays.asList(
+                    new Hydration("12:00 AM", 250, "05/23"),
+                    new Hydration("1:00 PM", 305, "05/25"),
+                    new Hydration("6:00 PM", 520, "05/25"),
+                    new Hydration("9:00 AM", 230, "05/23")
+            ));
+            JsonManager.saveHydration(this, hydrationList, username);
+            editor.apply();
+            myIntent.putExtra("username", username);
+            Toast.makeText(this, "Logging In", Toast.LENGTH_SHORT).show();
+            startActivity(myIntent);
+        }
         if (sharedPreferences.contains(username)) {
             // validate password
             String storedPw = sharedPreferences.getString(username + "_password", null);
