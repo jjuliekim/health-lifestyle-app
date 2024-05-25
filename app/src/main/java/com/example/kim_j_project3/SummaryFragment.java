@@ -35,9 +35,8 @@ public class SummaryFragment extends Fragment {
         return view;
     }
 
-    // 1st part: user register stats
+    // 1st part: set user register stats
     private void setUserInfo(View view) {
-        // set user info texts
         TextView heightText = view.findViewById(R.id.heightTextView);
         TextView weightText = view.findViewById(R.id.weightTextView);
         TextView bmiText = view.findViewById(R.id.bmiTextView);
@@ -52,7 +51,7 @@ public class SummaryFragment extends Fragment {
         bmiText.setText(String.format("BMI: %.2f", bmi));
     }
 
-    // 2nd part: summary stats sorted by date
+    // 2nd part: display summary stats sorted by date
     private void setSummaryList(View view) {
 
     }
