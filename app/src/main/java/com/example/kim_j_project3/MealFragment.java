@@ -42,8 +42,6 @@ public class MealFragment extends Fragment {
         if (getArguments() != null) {
             username = getArguments().getString("username");
             Log.i("HERE", "username: " + username);
-        } else {
-            Log.i("HERE", "was null");
         }
         mealList = JsonManager.loadMeals(getContext(), username);
         mealAdapter = new MealAdapter(mealList);
@@ -81,7 +79,7 @@ public class MealFragment extends Fragment {
             int mealCalories = Integer.parseInt(mealCaloriesStr);
 
             Meal newMeal = new Meal(mealName, mealCalories);
-            mealList.add(newMeal);
+            mealAdapter.addMeal(newMeal);
             JsonManager.saveMeals(getContext(), mealList, username);
             dialog.dismiss();
         });

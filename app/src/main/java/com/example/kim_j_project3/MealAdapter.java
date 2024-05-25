@@ -1,10 +1,8 @@
 package com.example.kim_j_project3;
 
-import android.content.Context;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.ArrayAdapter;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
@@ -36,6 +34,12 @@ public class MealAdapter extends RecyclerView.Adapter<MealAdapter.MealViewHolder
     @Override
     public int getItemCount() {
         return mealList.size();
+    }
+
+    // Method to add a meal and notify the adapter
+    public void addMeal(Meal meal) {
+        mealList.add(meal);
+        notifyItemInserted(mealList.size() - 1);
     }
 
     public static class MealViewHolder extends RecyclerView.ViewHolder {
