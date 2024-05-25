@@ -73,6 +73,7 @@ public class HydrationFragment extends Fragment {
                 Toast.makeText(getContext(), "Invalid Input", Toast.LENGTH_SHORT).show();
                 return;
             }
+            // if liquid time does not contain a number, return.
             int drinkML = Integer.parseInt(liquidML);
             Calendar calendar = Calendar.getInstance();
             int month = calendar.get(Calendar.MONTH) + 1;

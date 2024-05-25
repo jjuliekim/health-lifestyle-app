@@ -82,6 +82,7 @@ public class MealFragment extends Fragment {
             int month = calendar.get(Calendar.MONTH) + 1;
             int day = calendar.get(Calendar.DAY_OF_MONTH);
             String date = month + "/" + day;
+            Log.i("HERE", "date: " + date);
             Meal newMeal = new Meal(mealName, mealCalories, date);
             mealAdapter.addMeal(newMeal);
             JsonManager.saveMeals(getContext(), mealList, username);
