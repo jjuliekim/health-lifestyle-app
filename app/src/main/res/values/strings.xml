@@ -27,4 +27,7 @@
     <string name="ml">mL</string>
     <string name="no_meals_entered">No Meals Entered</string>
     <string name="no_drink_logs_entered">No Drink Logs Entered</string>
+    <string name="height">Height</string>
+    <string name="weight">Weight</string>
+    <string name="bmi">BMI</string>
 </resources>
