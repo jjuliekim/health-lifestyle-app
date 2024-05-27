@@ -70,10 +70,10 @@ public class LoginActivity extends AppCompatActivity {
             ));
             JsonManager.saveMeals(this, mealList, username);
             ArrayList<Hydration> hydrationList = new ArrayList<>(Arrays.asList(
-                    new Hydration("12:00 AM", 250, "05/23"),
-                    new Hydration("1:00 PM", 305, "05/25"),
-                    new Hydration("6:00 PM", 520, "05/25"),
-                    new Hydration("9:00 AM", 230, "05/23")
+                    new Hydration("12:00 AM", 250, "5/23"),
+                    new Hydration("1:00 PM", 305, "5/25"),
+                    new Hydration("6:00 PM", 520, "5/25"),
+                    new Hydration("9:00 AM", 230, "5/23")
             ));
             JsonManager.saveHydration(this, hydrationList, username);
             editor.apply();
