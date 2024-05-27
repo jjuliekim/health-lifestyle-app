@@ -70,6 +70,7 @@ public class MealFragment extends Fragment {
                 if (direction == ItemTouchHelper.LEFT) {
                     mealAdapter.deleteItem(position);
                     Toast.makeText(getContext(), "Meal Deleted", Toast.LENGTH_SHORT).show();
+                    JsonManager.saveMeals(getContext(), mealList, username);
                 } else if (direction == ItemTouchHelper.RIGHT) { // if swipe left, edit entry
                     showEditDialog(position);
                 }
