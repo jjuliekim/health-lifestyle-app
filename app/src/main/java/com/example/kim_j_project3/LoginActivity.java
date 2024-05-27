@@ -62,11 +62,11 @@ public class LoginActivity extends AppCompatActivity {
             editor.putString("test_weight", "120");
             editor.putString("test_age", "21");
             ArrayList<Meal> mealList = new ArrayList<>(Arrays.asList(
-                    new Meal("Pasta", 200, "05/23"),
-                    new Meal("Banana", 105, "05/25"),
-                    new Meal("French Toast", 150, "05/24"),
-                    new Meal("Steak", 510, "05/25"),
-                    new Meal("Eggs", 218, "05/23")
+                    new Meal("Pasta", 200, "5/23"),
+                    new Meal("Banana", 105, "5/25"),
+                    new Meal("French Toast", 150, "5/24"),
+                    new Meal("Steak", 510, "5/25"),
+                    new Meal("Eggs", 218, "5/23")
             ));
             JsonManager.saveMeals(this, mealList, username);
             ArrayList<Hydration> hydrationList = new ArrayList<>(Arrays.asList(
