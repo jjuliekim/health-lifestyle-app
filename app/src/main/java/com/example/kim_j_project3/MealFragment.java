@@ -71,7 +71,8 @@ public class MealFragment extends Fragment {
                     mealAdapter.deleteItem(position);
                     Toast.makeText(getContext(), "Meal Deleted", Toast.LENGTH_SHORT).show();
                     JsonManager.saveMeals(getContext(), mealList, username);
-                } else if (direction == ItemTouchHelper.RIGHT) { // if swipe left, edit entry
+                } else if (direction == ItemTouchHelper.RIGHT) { // if swipe right, edit entry
+                    Log.i("HERE", "position: " + position);
                     showEditDialog(position);
                 }
             }
@@ -129,8 +130,8 @@ public class MealFragment extends Fragment {
         Button buttonCancel = dialogView.findViewById(R.id.edit_meal_cancel);
 
         Meal meal = mealAdapter.getItem(position);
-        mealNameText.setText(meal.getName());
-        mealCalText.setText(meal.getCalories());
+        mealNameText.setHint(meal.getName());
+        mealCalText.setHint(String.valueOf(meal.getCalories()));
 
         AlertDialog dialog = new AlertDialog.Builder(getContext()).setView(dialogView).create();
 
@@ -149,7 +150,10 @@ public class MealFragment extends Fragment {
         });
 
         // cancel button action
-        buttonCancel.setOnClickListener(view -> dialog.cancel());
+        buttonCancel.setOnClickListener(view -> {
+            mealAdapter.notifyItemChanged(position);
+            dialog.cancel();
+        });
 
         dialog.show();
     }
