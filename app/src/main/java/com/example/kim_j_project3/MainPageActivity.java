@@ -2,9 +2,11 @@ package com.example.kim_j_project3;
 
 import android.content.Intent;
 import android.content.pm.PackageManager;
+import android.os.Build;
 import android.os.Bundle;
 
 import androidx.activity.EdgeToEdge;
+import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.app.ActivityCompat;
 import androidx.core.content.ContextCompat;
@@ -15,6 +17,11 @@ import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentTransaction;
 
 import com.google.android.material.tabs.TabLayout;
+
+import android.Manifest;
+import android.util.Log;
+import android.widget.Toast;
+
 
 public class MainPageActivity extends AppCompatActivity {
     private Bundle bundle;
@@ -30,6 +37,12 @@ public class MainPageActivity extends AppCompatActivity {
             return insets;
         });
 
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.Q) {
+            if (ContextCompat.checkSelfPermission(this, Manifest.permission.ACTIVITY_RECOGNITION) != PackageManager.PERMISSION_GRANTED) {
+                ActivityCompat.requestPermissions(this, new String[]{Manifest.permission.ACTIVITY_RECOGNITION}, 1);
+            }
+        }
+
         Intent myIntent = getIntent();
         String username = myIntent.getStringExtra("username");
 
@@ -44,7 +57,7 @@ public class MainPageActivity extends AppCompatActivity {
             @Override
             public void onTabSelected(TabLayout.Tab tab) {
                 Fragment selectedFragment = null;
-                switch(tab.getPosition()) {
+                switch (tab.getPosition()) {
                     case 0:
                         selectedFragment = new MealFragment();
                         break;
@@ -82,5 +95,19 @@ public class MainPageActivity extends AppCompatActivity {
         FragmentTransaction fragmentTransaction = getSupportFragmentManager().beginTransaction();
         fragmentTransaction.replace(R.id.fragmentContainerView, fragment);
         fragmentTransaction.commit();
+    }
+
+    @Override
+    public void onRequestPermissionsResult(int requestCode, @NonNull String[] permissions, @NonNull int[] grantResults) {
+        super.onRequestPermissionsResult(requestCode, permissions, grantResults);
+        if (requestCode == 1) {
+            if (grantResults.length > 0 && grantResults[0] == PackageManager.PERMISSION_GRANTED) {
+                Log.i("HERE", "permission granted");
+                Toast.makeText(this, "permission granted", Toast.LENGTH_SHORT).show();
+            } else {
+                Log.i("HERE", "permission denied");
+                Toast.makeText(this, "permission denied", Toast.LENGTH_SHORT).show();
+            }
+        }
     }
 }

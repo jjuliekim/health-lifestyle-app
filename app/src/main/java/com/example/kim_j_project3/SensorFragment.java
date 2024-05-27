@@ -8,6 +8,10 @@ import android.hardware.SensorEventListener;
 import android.hardware.SensorManager;
 import android.os.Bundle;
 
+import androidx.activity.result.ActivityResultLauncher;
+import androidx.activity.result.contract.ActivityResultContracts;
+import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
 import androidx.core.app.ActivityCompat;
 import androidx.core.content.ContextCompat;
 import androidx.fragment.app.Fragment;
@@ -19,56 +23,63 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 public class SensorFragment extends Fragment implements SensorEventListener {
-    private TextView stepText;
-    private int stepsCount = 0;
-    private Sensor stepSensor;
     private SensorManager sensorManager;
-
-    public SensorFragment() {
-    }
-
-    public static SensorFragment newInstance() {
-        return new SensorFragment();
-    }
+    private Sensor stepCounterSensor;
+    private TextView stepTextView;
+    private boolean isSensorPresent;
+    private int stepsAtReset;
 
     @Override
-    public void onCreate(Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
-        sensorManager = (SensorManager) getActivity().getSystemService(Context.SENSOR_SERVICE);
-        stepSensor = sensorManager.getDefaultSensor(Sensor.TYPE_STEP_COUNTER);
-    }
-
-    @Override
-    public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
+    public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.fragment_sensor, container, false);
-        stepText = view.findViewById(R.id.stepTextView);
+        stepTextView = view.findViewById(R.id.stepTextView);
         return view;
+    }
+
+    @Override
+    public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
+        super.onViewCreated(view, savedInstanceState);
+        sensorManager = (SensorManager) getActivity().getSystemService(Context.SENSOR_SERVICE);
+        if (sensorManager != null) {
+            stepCounterSensor = sensorManager.getDefaultSensor(Sensor.TYPE_STEP_COUNTER);
+            if (stepCounterSensor != null) {
+                isSensorPresent = true;
+            } else {
+                stepTextView.setText("Step Counter Sensor Not Available");
+                isSensorPresent = false;
+            }
+        }
     }
 
     @Override
     public void onResume() {
         super.onResume();
-        if (stepSensor != null) {
-            sensorManager.registerListener(this, stepSensor, SensorManager.SENSOR_DELAY_NORMAL);
-        } else {
-            Toast.makeText(getActivity(), "Step Counter Sensor not available", Toast.LENGTH_SHORT).show();
+        if (isSensorPresent) {
+            sensorManager.registerListener(this, stepCounterSensor, SensorManager.SENSOR_DELAY_NORMAL);
         }
     }
 
     @Override
     public void onPause() {
         super.onPause();
-        sensorManager.unregisterListener(this);
+        if (isSensorPresent) {
+            sensorManager.unregisterListener(this);
+        }
     }
 
     @Override
     public void onSensorChanged(SensorEvent event) {
-        stepsCount = (int) event.values[0];
-        stepText.setText(String.format("%d steps", stepsCount));
+        if (event.sensor.getType() == Sensor.TYPE_STEP_COUNTER) {
+            if (stepsAtReset == 0) {
+                stepsAtReset = (int) event.values[0];
+            }
+            int stepsSinceReset = (int) event.values[0] - stepsAtReset;
+            stepTextView.setText(String.format("%d steps", stepsSinceReset));
+        }
     }
 
     @Override
     public void onAccuracyChanged(Sensor sensor, int accuracy) {
-
+        // not used
     }
 }
