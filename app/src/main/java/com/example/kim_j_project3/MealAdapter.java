@@ -42,6 +42,20 @@ public class MealAdapter extends RecyclerView.Adapter<MealAdapter.MealViewHolder
         notifyItemInserted(mealList.size() - 1);
     }
 
+    // delete meal
+    public void deleteItem(int position) {
+        mealList.remove(position);
+        notifyItemRemoved(position);
+    }
+
+    // edit meal
+    public void editItem(int position, String newName, int newCalories) {
+        Meal meal = mealList.get(position);
+        meal.setName(newName);
+        meal.setCalories(newCalories);
+        notifyItemChanged(position);
+    }
+
     public static class MealViewHolder extends RecyclerView.ViewHolder {
         TextView nameTextView;
         TextView caloriesTextView;
