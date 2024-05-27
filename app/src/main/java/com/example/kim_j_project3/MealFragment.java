@@ -130,8 +130,8 @@ public class MealFragment extends Fragment {
         Button buttonCancel = dialogView.findViewById(R.id.edit_meal_cancel);
 
         Meal meal = mealAdapter.getItem(position);
-        mealNameText.setHint(meal.getName());
-        mealCalText.setHint(String.valueOf(meal.getCalories()));
+        mealNameText.setText(meal.getName());
+        mealCalText.setText(String.valueOf(meal.getCalories()));
 
         AlertDialog dialog = new AlertDialog.Builder(getContext()).setView(dialogView).create();
 

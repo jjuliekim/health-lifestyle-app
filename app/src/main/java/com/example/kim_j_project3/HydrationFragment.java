@@ -124,8 +124,8 @@ public class HydrationFragment extends Fragment {
         Button buttonCancel = dialogView.findViewById(R.id.edit_liquid_cancel);
 
         Hydration hydration = hydrationAdapter.getItem(position);
-        liquidTimeText.setHint(hydration.getTime());
-        liquidMLText.setHint(String.valueOf(hydration.getMl()));
+        liquidTimeText.setText(hydration.getTime());
+        liquidMLText.setText(String.valueOf(hydration.getMl()));
 
         AlertDialog dialog = new AlertDialog.Builder(getContext()).setView(dialogView).create();
 
