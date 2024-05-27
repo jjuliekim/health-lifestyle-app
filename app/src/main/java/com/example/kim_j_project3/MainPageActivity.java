@@ -16,8 +16,8 @@ import androidx.core.view.WindowInsetsCompat;
 import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentTransaction;
 
-import com.example.kim_j_project3.Hydration.HydrationFragment;
-import com.example.kim_j_project3.Meal.MealFragment;
+import com.example.kim_j_project3.hydration.HydrationFragment;
+import com.example.kim_j_project3.meal.MealFragment;
 import com.google.android.material.tabs.TabLayout;
 
 import android.Manifest;

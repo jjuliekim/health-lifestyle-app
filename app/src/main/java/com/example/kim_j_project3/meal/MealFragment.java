@@ -1,4 +1,4 @@
-package com.example.kim_j_project3.Meal;
+package com.example.kim_j_project3.meal;
 
 import android.app.AlertDialog;
 import android.os.Bundle;
