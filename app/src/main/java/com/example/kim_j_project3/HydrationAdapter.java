@@ -36,10 +36,29 @@ public class HydrationAdapter extends RecyclerView.Adapter<HydrationAdapter.Hydr
         return hydrationList.size();
     }
 
+    // return hydration entry
+    public Hydration getItem(int position) {
+        return hydrationList.get(position);
+    }
+
     // Method to add a meal and notify the adapter
     public void addLiquid(Hydration hydration) {
         hydrationList.add(hydration);
         notifyItemInserted(hydrationList.size() - 1);
+    }
+
+    // delete item
+    public void deleteItem(int position) {
+        hydrationList.remove(position);
+        notifyItemRemoved(position);
+    }
+
+    // edit item
+    public void editItem(int position, String newTime, int newML) {
+        Hydration hydration = hydrationList.get(position);
+        hydration.setTime(newTime);
+        hydration.setMl(newML);
+        notifyItemChanged(position);
     }
 
     public static class HydrationViewHolder extends RecyclerView.ViewHolder {
