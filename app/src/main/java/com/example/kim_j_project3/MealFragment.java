@@ -121,7 +121,7 @@ public class MealFragment extends Fragment {
 
     // set up and display edit meal dialog
     private void showEditDialog(int position) {
-        View dialogView = LayoutInflater.from(getContext()).inflate(R.layout.dialog_add_meal, null);
+        View dialogView = LayoutInflater.from(getContext()).inflate(R.layout.dialog_edit_meal, null);
         EditText mealNameText = dialogView.findViewById(R.id.edit_meal_name);
         EditText mealCalText = dialogView.findViewById(R.id.edit_meal_cal);
         Button buttonAdd = dialogView.findViewById(R.id.edit_meal_add);
