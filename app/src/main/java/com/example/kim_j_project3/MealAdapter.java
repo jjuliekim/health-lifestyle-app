@@ -36,6 +36,11 @@ public class MealAdapter extends RecyclerView.Adapter<MealAdapter.MealViewHolder
         return mealList.size();
     }
 
+    // return meal
+    public Meal getItem(int position) {
+        return mealList.get(position);
+    }
+
     // Method to add a meal and notify the adapter
     public void addMeal(Meal meal) {
         mealList.add(meal);
