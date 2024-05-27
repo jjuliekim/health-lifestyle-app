@@ -1,4 +1,4 @@
-package com.example.kim_j_project3.meal;
+package com.example.kim_j_project3;
 
 public class Meal {
     private String name;

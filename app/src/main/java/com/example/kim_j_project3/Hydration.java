@@ -1,4 +1,4 @@
-package com.example.kim_j_project3.hydration;
+package com.example.kim_j_project3;
 
 public class Hydration {
     private String time;

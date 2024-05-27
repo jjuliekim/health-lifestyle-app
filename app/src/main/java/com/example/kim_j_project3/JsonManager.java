@@ -4,8 +4,6 @@ import android.content.Context;
 import android.content.SharedPreferences;
 import android.util.Log;
 
-import com.example.kim_j_project3.hydration.Hydration;
-import com.example.kim_j_project3.meal.Meal;
 import com.google.gson.Gson;
 import com.google.gson.reflect.TypeToken;
 

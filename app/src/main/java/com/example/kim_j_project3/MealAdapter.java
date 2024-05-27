@@ -1,4 +1,4 @@
-package com.example.kim_j_project3.meal;
+package com.example.kim_j_project3;
 
 import android.view.LayoutInflater;
 import android.view.View;
@@ -7,8 +7,6 @@ import android.widget.TextView;
 
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
-
-import com.example.kim_j_project3.R;
 
 import java.util.List;
 

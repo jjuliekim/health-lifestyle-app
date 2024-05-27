@@ -50,7 +50,7 @@
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        android:name="com.example.kim_j_project3.meal.MealFragment"
+        android:name="com.example.kim_j_project3.MealFragment"
         tools:layout="@layout/fragment_meal" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

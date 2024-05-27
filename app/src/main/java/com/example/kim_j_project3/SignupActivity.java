@@ -14,9 +14,6 @@ import androidx.core.graphics.Insets;
 import androidx.core.view.ViewCompat;
 import androidx.core.view.WindowInsetsCompat;
 
-import com.example.kim_j_project3.hydration.Hydration;
-import com.example.kim_j_project3.meal.Meal;
-
 import java.util.ArrayList;
 
 public class SignupActivity extends AppCompatActivity {
