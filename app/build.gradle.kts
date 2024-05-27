@@ -32,6 +32,16 @@ android {
     buildFeatures {
         viewBinding = true
     }
+    sourceSets {
+        getByName("main") {
+            java {
+                srcDirs("src\\main\\java", "src\\main\\java\\2",
+                    "src\\main\\java",
+                    "src\\main\\java\\Meal", "src\\main\\java", "src\\main\\java\\2"
+                )
+            }
+        }
+    }
 }
 
 dependencies {

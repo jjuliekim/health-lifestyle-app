@@ -14,9 +14,11 @@ import androidx.core.graphics.Insets;
 import androidx.core.view.ViewCompat;
 import androidx.core.view.WindowInsetsCompat;
 
+import com.example.kim_j_project3.Hydration.Hydration;
+import com.example.kim_j_project3.Meal.Meal;
+
 import java.util.ArrayList;
 import java.util.Arrays;
-import java.util.List;
 
 public class LoginActivity extends AppCompatActivity {
 

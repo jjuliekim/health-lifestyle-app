@@ -1,4 +1,4 @@
-package com.example.kim_j_project3;
+package com.example.kim_j_project3.Meal;
 
 import android.app.AlertDialog;
 import android.os.Bundle;
@@ -17,6 +17,8 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Toast;
 
+import com.example.kim_j_project3.JsonManager;
+import com.example.kim_j_project3.R;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 
 import java.util.ArrayList;
